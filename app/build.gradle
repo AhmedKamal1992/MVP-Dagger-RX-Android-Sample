@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "ahmed.com.mvp_dagger_rx_android_sample"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        jackOptions
+                {
+                    enabled true
+                }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Android Support Libraries
+    compile rootProject.ext.libraries.appCompat
+    compile rootProject.ext.libraries.androidSupport
+    compile rootProject.ext.libraries.designSupport
+    compile rootProject.ext.libraries.recyclerView
+    compile rootProject.ext.libraries.cardView
+    compile rootProject.ext.libraries.relativePercent
+
+    //RxJava , RxAndroid , RxBinding , Picasso , Fresco
+    compile rootProject.ext.libraries.rxjava
+    compile rootProject.ext.libraries.rxandroid
+    compile rootProject.ext.libraries.rxbinding
+    compile rootProject.ext.libraries.picasso
+    compile rootProject.ext.libraries.okHttpDownloader
+
+    //Dependency Injectors (ButterKnife , Dagger)
+    compile rootProject.ext.libraries.butterknife
+    annotationProcessor rootProject.ext.aptLibraries.butterknifeCompiler
+    compile rootProject.ext.libraries.dagger
+    annotationProcessor rootProject.ext.aptLibraries.daggerCompiler
+    provided rootProject.ext.aptLibraries.daggerCompiler
+
+    //Retrofit , RxRetroAdapter
+    compile rootProject.ext.libraries.retrofit
+    compile rootProject.ext.libraries.retrofitConverter
+    compile rootProject.ext.libraries.retrofitAdapter
+
+    //Ok HTTP
+    compile rootProject.ext.libraries.okhttp
+    compile rootProject.ext.libraries.okhttpLogging
+
+    //Parcel
+    compile rootProject.ext.libraries.parcel
+    annotationProcessor rootProject.ext.aptLibraries.parcelCompiler
+
+    //Slider
+    compile rootProject.ext.libraries.slider
+    compile rootProject.ext.libraries.sliderSupport
+    compile rootProject.ext.libraries.constaintLayout
+
+    //leak canery
+    debugCompile rootProject.ext.libraries.leakCanery
+    releaseCompile rootProject.ext.libraries.leakCaneryRelease
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    androidTestCompile 'junit:junit:4.12'
+}
